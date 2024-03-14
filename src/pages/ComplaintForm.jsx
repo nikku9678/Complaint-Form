@@ -5,6 +5,7 @@ import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import './ComplaintForm.css'
 import  {db} from '../firebase.js';
 import {addDoc,collection} from '@firebase/firestore' 
+import { toast } from 'react-toastify';
 const ComplaintForm = () => {
   const ref=collection(db,'comp')
   const [name, setName] = useState('');
@@ -37,12 +38,14 @@ const ComplaintForm = () => {
   
     try {
       await addDoc(ref,formData)
-      // // ref.add(formData);
-      // await db.collection("com").add(formData);
-      alert("Your complaint has been submitted successfully!");
+      toast("Complaint sent successfully")
+      setName('')
+      setComplaint('')
+      setInv('')
+      setImage(null)
     } catch (error) {
       console.error("Error submitting complaint:", error);
-      alert("There was an error submitting your complaint. Please try again.");
+      
     }
   };
 
