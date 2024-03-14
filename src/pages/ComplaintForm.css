@@ -1,0 +1,208 @@
+.app{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px auto;
+  border-radius: 40px;
+  /* border: 2px solid black; */
+}
+.form{
+  /* border-radius: 10px; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background: white;
+  /* height: 650px; */
+  background-color: antiquewhite;
+}
+.form .left{
+
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
+  
+  /* border: 2px solid black; */
+  padding: 10px 20px;
+}
+#slok{
+  margin-top: 200px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.form .right{
+  width: 60%;
+  border-left: 1px solid grey;
+  /* border: 2px solid black; */
+}
+.right .c-form {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+background-color: antiquewhite;
+  
+}
+.app .h2{
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top: 0;
+  padding: 20px 0 ;
+  font-size: 1.5rem;
+  background-color:gold;
+}
+.c-form form {
+  width: 80%;
+  margin: 40px auto;
+}
+
+form label {
+  font-size: .9rem;
+  display: block;
+}
+form input,
+textarea {
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 0.5rem;
+  width: 90%;
+  border: 1px solid grey;
+  outline: none;
+  margin-bottom: 10px;
+  
+}
+form textarea {
+  resize: none;
+  width: 90%;
+  font-size: 18px;
+  height: 60px;
+}
+
+#webcam{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.camera {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid black; */
+}
+.camera-btn{
+  display: flex;
+  flex-direction: row;
+  
+}
+button{
+  padding: 15px 30px;
+  margin: 10px 5px;
+  background-color: slateblue;
+  border: none;
+  border-radius: 40px;
+  font-size: 14px;
+color: white;
+}
+
+.sub-btn{
+  padding: 10px 40px;
+  display: flex;
+  justify-content: center;
+}
+.sub-btn button{
+  padding: 10px 40px;
+
+}
+
+@media only screen and (max-width: 767px) {
+  .app{
+    width: 95%;
+    margin: 10px auto;
+    border-radius: 10px;
+    
+  }
+  .app .h2{
+    font-size: 1.2rem;
+  }
+  .app .form{
+    width: 100%;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .app h2{
+    width: fit-content;
+  }
+  .app .form .left{
+    padding: 10px 0;
+    
+    width: 100%;
+  }
+  #slok{
+    margin-top: 20px;
+    font-size: 1.2rem;
+    padding-bottom: 20px;
+    border-bottom: 1px solid grey;
+  }
+  .app .form .right{
+    width: 100%;
+    border-left: none;
+    padding: 0;
+  }
+  #cap-img{
+    width: 150px;
+    position: relative;
+    left: 20%;
+    right: 20%;
+    /* border: 2px solid red; */
+  }
+  .app .c-form h2{
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.2rem;
+  }
+  .c-form form {
+    width: 80%;
+    margin: auto;
+  }
+  form div {
+    margin: 0px;
+  
+    /* border: 2px solid red; */
+  }
+  form label {
+    font-size: 1rem;
+    display: block;
+  }
+  form input,
+textarea {
+  padding: 10px;
+  border-radius: 0.5rem;
+  width: 90%;
+  /* border: none;  */
+  outline: none;
+  
+}
+
+
+  #webcam{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .c-form form button{
+    padding: 12px 20px;
+    margin: 10px 5px;
+  
+  }
+}
