@@ -21,17 +21,24 @@
 
   width: 40%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   /* align-items: center; */
   justify-content: center;
-  
+  align-items: center;
   /* border: 2px solid black; */
   padding: 10px 20px;
 }
 #slok{
-  margin-top: 200px;
+  margin: 20px 0;
   font-size: 1.5rem;
   text-align: center;
+}
+.map{
+  width: 80%;
+  height: 300px;
+  display: flex;
+padding: 20px;
+    justify-content: center;
 }
 .form .right{
   width: 60%;
@@ -137,14 +144,21 @@ color: white;
   .app .form{
     width: 100%;
     flex-direction: column;
-    gap: 30px;
+    gap: 0;
+  }
+  .map{
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid red; */
+    /* margin: auto; */
+    height: 170px;
   }
   .app h2{
     width: fit-content;
   }
   .app .form .left{
     padding: 10px 0;
-    
+    justify-content: center;
     width: 100%;
   }
   #slok{

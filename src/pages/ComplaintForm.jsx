@@ -7,6 +7,7 @@ import  {db} from '../firebase.js';
 import {addDoc,collection} from '@firebase/firestore' 
 import { toast } from 'react-toastify';
 const ComplaintForm = () => {
+ 
   const ref=collection(db,'comp')
   const [name, setName] = useState('');
   const [inv, setInv] = useState('');
@@ -31,7 +32,8 @@ const ComplaintForm = () => {
       name,
       complaint,
       inv,
-      image
+      image,
+      timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
     };
   
     console.log('Form Data:', formData); // Debugging
@@ -63,6 +65,9 @@ const ComplaintForm = () => {
       <div id='slok'>शरीर और मोह सेआगेभी हैजीवन, <br/>
 एक पावन अनुभव के लिए
 चलो कुम्भ चल.</div>
+<div className='map'>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57647.60898680808!2d81.78486139949585!3d25.439080554063956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39854b0b2f2e574f%3A0xadfd2b86aabbdd2b!2sKumbh%20Mela!5e0!3m2!1sen!2sin!4v1710574690983!5m2!1sen!2sin"  style={{border:'0'}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
     </div>
     <div className="right">
     <div className="c-form">
