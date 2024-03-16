@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam'; // Install using npm or yarn
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,13 @@ const ComplaintForm = () => {
   const [image, setImage] = useState(null);
   const [showCamera, setShowCamera] = useState(false);
   const [cameraFacingMode, setCameraFacingMode] = useState('user'); 
+
+
+  const [ISTDate, setISTDate] = useState('');
+  const [ISTTime, setISTTime] = useState('');
+
+
+
   const handleImageCapture = () => {
     setShowCamera(!showCamera);
   };
@@ -33,7 +40,8 @@ const ComplaintForm = () => {
       complaint,
       inv,
       image,
-      timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+      ISTDate,
+      ISTTime,
     };
   
     console.log('Form Data:', formData); // Debugging
@@ -55,6 +63,32 @@ const ComplaintForm = () => {
     setCameraFacingMode(cameraFacingMode === 'user' ? 'environment' : 'user');
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentDateTime = new Date();
+      const ISTOptions = {
+        timeZone: 'Asia/Kolkata',
+        hour12: false,
+       
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+
+      const ISTDateString = currentDateTime.toLocaleDateString('en-IN', ISTOptions);
+      const ISTTimeString = currentDateTime.toLocaleTimeString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      });
+
+      setISTDate(ISTDateString);
+      setISTTime(ISTTimeString);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
   const webcamRef = React.useRef(null);
 
   return (
