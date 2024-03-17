@@ -19,6 +19,7 @@ const ComplaintForm = () => {
   const [img, setImg] = useState(null);
   const [showCamera, setShowCamera] = useState(false);
   const [cameraFacingMode, setCameraFacingMode] = useState("user");
+  const [isSubmitting, setIsSubmitting] = useState(false); // State to track form submission
 
   const [ISTDate, setISTDate] = useState("");
   const [ISTTime, setISTTime] = useState("");
@@ -61,7 +62,10 @@ const ComplaintForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    if (isSubmitting) return; // Prevent multiple submissions
+
+    setIsSubmitting(true); // Set isSubmitting to true when form is being submitted
+
     const formData = {
       name,
       complaint,
@@ -74,6 +78,7 @@ const ComplaintForm = () => {
    try{
     if (!image) {
       alert('Please select an image.');
+      setIsSubmitting(false); // Reset isSubmitting
       return;
     }
     const storage = getStorage();
@@ -105,6 +110,8 @@ const ComplaintForm = () => {
   //   } 
   catch (error) {
       console.error("Error submitting complaint:", error);
+    }finally {
+      setIsSubmitting(false); // Reset isSubmitting after form submission
     }
   };
 
@@ -196,7 +203,7 @@ const ComplaintForm = () => {
               </div>
              
               <div className="sub-btn">
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={isSubmitting} >{isSubmitting ? 'Submitting...' : 'Register'}</button>
               </div>
             </form>
           </div>
