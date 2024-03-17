@@ -44,7 +44,7 @@ const ComplaintForm = () => {
   };
   const handleUploadImg = (e) => {
     console.log(e.target.files[0])
-    const  file =  e.target.files[1];
+    const  file =  e.target.files[0];
     const imgs =ref(imgDB,`Image/${v4()}`)
     uploadBytes(imgs, file).then((data)=>{
       console.log(data,"imgs")
