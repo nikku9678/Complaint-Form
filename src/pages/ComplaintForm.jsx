@@ -71,14 +71,14 @@ const ComplaintForm = () => {
     console.log("Form Data:", formData); // Debugging
    try{
     const storage = getStorage();
-    const imageRef = ref(storage, `hh/${uuidv4()}`);
+    const imageRef = ref(storage, `complaint-image/${uuidv4()}`);
     await uploadBytes(imageRef, image);
 
     // Get the download URL of the uploaded image
     const imageUrl = await getDownloadURL(imageRef);
     console.log(imageUrl)
     // Add data to Firestore
-    const collectionRef = collection(db, 'VK');
+    const collectionRef = collection(db, 'comp');
     await addDoc(collectionRef, {
       data: formData,
       imageUrl: imageUrl,
