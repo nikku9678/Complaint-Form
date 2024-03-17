@@ -54,7 +54,9 @@ const ComplaintForm = () => {
     //     console.log("newImg: ",image)
     //   })
     // })
-    setImage(e.target.files[0])
+   
+      setImage(e.target.files[0])
+    
   };
 
   const handleSubmit = async (e) => {
@@ -70,6 +72,10 @@ const ComplaintForm = () => {
 
     console.log("Form Data:", formData); // Debugging
    try{
+    if (!image) {
+      alert('Please select an image.');
+      return;
+    }
     const storage = getStorage();
     const imageRef = ref(storage, `complaint-image/${uuidv4()}`);
     await uploadBytes(imageRef, image);
@@ -143,7 +149,7 @@ const ComplaintForm = () => {
       <div className="form">
         <div className="left">
           <div id="slok">
-            शरीर और मोह सेआगेभी हैजीवन, <br />
+            शरीर और मोह से आगे भी है जीवन, <br />
             एक पावन अनुभव के लिए चलो कुम्भ चल.
           </div>
           <div className="map">
@@ -186,7 +192,7 @@ const ComplaintForm = () => {
                   onChange={(e) => setInv(e.target.value)}
                   required
                 />
-                <input type="file" id="fileInput"  onChange={(e)=>handleUploadImg(e)}/>
+                <input type="file" id="fileInput"   onChange={(e)=>handleUploadImg(e)}/>
               </div>
              
               <div className="sub-btn">
