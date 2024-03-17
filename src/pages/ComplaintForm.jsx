@@ -91,7 +91,11 @@ const ComplaintForm = () => {
     // Add data to Firestore
     const collectionRef = collection(db, 'comp');
     await addDoc(collectionRef, {
-      data: formData,
+      name:name,
+      complaint:complaint,
+      inv:inv,
+      ISTDate:ISTDate,
+      ISTTime:ISTTime,
       imageUrl: imageUrl,
     });
 
