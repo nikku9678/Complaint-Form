@@ -6,8 +6,8 @@ import "./ComplaintForm.css";
 import { db, imgDB } from "../firebase.js";
 import { addDoc, collection } from "@firebase/firestore";
 import { toast } from "react-toastify";
-import { v4 } from "uuid";
-import { getDownloadURL,ref,uploadBytes } from "firebase/storage";
+import { v4 as uuidv4} from "uuid";
+import { getDownloadURL,getStorage,ref,uploadBytes } from "firebase/storage";
 
 
 const ComplaintForm = () => {
@@ -16,7 +16,7 @@ const ComplaintForm = () => {
   const [inv, setInv] = useState("");
   const [complaint, setComplaint] = useState("");
   const [image, setImage] = useState(null);
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState(null);
   const [showCamera, setShowCamera] = useState(false);
   const [cameraFacingMode, setCameraFacingMode] = useState("user");
 
@@ -43,17 +43,18 @@ const ComplaintForm = () => {
     setShowCamera(!showCamera);
   };
   const handleUploadImg = (e) => {
-    console.log(e.target.files[0])
-    const  file =  e.target.files[0];
-    const imgs =ref(imgDB,`Image/${v4()}`)
-    uploadBytes(imgs, file).then((data)=>{
-      console.log(data,"imgs")
-      getDownloadURL(data.ref).then((val)=>{
-        console.log(val);
-        setImg(val)
-        console.log("newImg: ",image)
-      })
-    })
+    // console.log(e.target.files[0])
+    // const  file =  e.target.files[0];
+    // const imgs =ref(imgDB,`Image/${v4()}`)
+    // uploadBytes(imgs, e.target.files[0]).then((data)=>{
+    //   console.log(data,"imgs")
+    //   getDownloadURL(data.ref).then((val)=>{
+    //     console.log(val);
+    //     setImg(val)
+    //     console.log("newImg: ",image)
+    //   })
+    // })
+    setImg(e.target.files[0])
   };
 
   const handleSubmit = async (e) => {
@@ -68,17 +69,35 @@ const ComplaintForm = () => {
     };
 
     console.log("Form Data:", formData); // Debugging
+   try{
+    const storage = getStorage();
+    const imageRef = ref(storage, `images/${uuidv4()}`);
+    await uploadBytes(imageRef, image);
 
-    try {
-      const valref= collection(db,'Complaint')
-      await addDoc(valref, {txtVal:formData,imgUrl:img});
-      toast("Complaint sent successfully");
-      setName("");
-      setComplaint("");
-      setInv("");
-      setImage(null);setImg('')
-      document.getElementById("fileInput").value = "";
-    } catch (error) {
+    // Get the download URL of the uploaded image
+    const imageUrl = await getDownloadURL(imageRef);
+
+    // Add data to Firestore
+    const collectionRef = collection(db, 'New Db');
+    await addDoc(collectionRef, {
+      data: formData,
+      imageUrl: imageUrl,
+    });
+
+  
+    alert('Data uploaded successfully!');
+//   try {
+//     const valref= collection(db,'Complaint')
+//     await addDoc(valref, {txtVal:formData,imgUrl:img});
+//     toast("Complaint sent successfully");
+    setName("");
+    setComplaint("");
+    setInv("");
+    document.getElementById("fileInput").value = "";
+    setImage(null);setImg(null)
+   }
+  //   } 
+  catch (error) {
       console.error("Error submitting complaint:", error);
     }
   };
