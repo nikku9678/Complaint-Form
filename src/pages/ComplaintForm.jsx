@@ -31,7 +31,7 @@ const ComplaintForm = () => {
     
     const imageSrc = webcamRef.current.getScreenshot();
     console.log(imageSrc)
-    const imgs =ref(imgDB,`Image/${v4()}`)
+    const imgs =ref(imgDB,`d/${v4()}`)
     uploadBytes(imgs, imageSrc).then((data)=>{
       console.log(data,"imgs")
       getDownloadURL(data.ref).then((val)=>{
@@ -54,7 +54,7 @@ const ComplaintForm = () => {
     //     console.log("newImg: ",image)
     //   })
     // })
-    setImg(e.target.files[0])
+    setImage(e.target.files[0])
   };
 
   const handleSubmit = async (e) => {
@@ -71,14 +71,14 @@ const ComplaintForm = () => {
     console.log("Form Data:", formData); // Debugging
    try{
     const storage = getStorage();
-    const imageRef = ref(storage, `images/${uuidv4()}`);
+    const imageRef = ref(storage, `hh/${uuidv4()}`);
     await uploadBytes(imageRef, image);
 
     // Get the download URL of the uploaded image
     const imageUrl = await getDownloadURL(imageRef);
-
+    console.log(imageUrl)
     // Add data to Firestore
-    const collectionRef = collection(db, 'New Db');
+    const collectionRef = collection(db, 'VK');
     await addDoc(collectionRef, {
       data: formData,
       imageUrl: imageUrl,
