@@ -203,7 +203,7 @@ const ComplaintForm = () => {
                   onChange={(e) => setInv(e.target.value)}
                   required
                 />
-                <input type="file" id="fileInput"   onChange={(e)=>handleUploadImg(e)}/>
+                <input type="file" id="fileInput" accept="image/*" capture="camera"  onChange={(e)=>handleUploadImg(e)}/>
               </div>
              
               <div className="sub-btn">
